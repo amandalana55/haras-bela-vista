@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Haras Bela Vista</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- =====================================================
+         MENU LATERAL
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span>🐎</span>
+            <h1>Haras</h1>
+            <p>Bela Vista</p>
+        </div>
+
+        <nav class="menu">
+
+            <a href="index.html" class="menu-item active">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="cavalo.html" class="menu-item">
+                <span>🐴</span>
+                Cavalos
+            </a>
+
+            <a href="passeios.html" class="menu-item">
+                <span>🏇</span>
+                Passeios
+            </a>
+
+            <a href="clientes.html" class="menu-item">
+                <span>👥</span>
+                Clientes
+            </a>
+
+            <a href="proprietarios.html" class="menu-item">
+                <span>👤</span>
+                Proprietários
+            </a>
+
+            <a href="equipamentos.html" class="menu-item">
+                <span>🎒</span>
+                Equipamentos
+            </a>
+
+            <a href="shop.html" class="menu-item">
+                <span>🏪</span>
+                Shop
+            </a>
+
+            <a href="relatorios.html" class="menu-item">
+                <span>📊</span>
+                Relatórios
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <!-- =================================================
+             TOPO
+        ================================================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome">
+                    Painel de gerenciamento
+                </p>
+
+                <h2>
+                    Bem-vindo ao Haras Bela Vista
+                </h2>
+
+            </div>
+
+
+            <!-- GERENTE CLICÁVEL -->
+
+            <a href="gerente.html" class="manager">
+
+                <div class="manager-photo">
+
+                    <img
+                        src="images/gerente.jpg"
+                        alt="Foto do gerente"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+
+                    <div class="manager-photo-fallback">
+                        👤
+                    </div>
+
+                </div>
+
+
+                <div class="manager-info">
+
+                    <strong>
+                        Gerente
+                    </strong>
+
+                    <small>
+                        Administrador
+                    </small>
+
+                </div>
+
+            </a>
+
+        </header>
+
+
+        <!-- =================================================
+             CARDS
+        ================================================== -->
+
+        <section class="dashboard-cards">
+
+            <div class="dashboard-card">
+
+                <span class="card-icon">
+                    🐴
+                </span>
+
+                <div>
+                    <p>Cavalos</p>
+                    <strong>9</strong>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <span class="card-icon">
+                    🏇
+                </span>
+
+                <div>
+                    <p>Passeios</p>
+                    <strong>3</strong>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <span class="card-icon">
+                    👥
+                </span>
+
+                <div>
+                    <p>Clientes</p>
+                    <strong>7</strong>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <span class="card-icon">
+                    🏠
+                </span>
+
+                <div>
+                    <p>Baias</p>
+                    <strong>9</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CAVALOS
+        ================================================== -->
+
+        <section class="horses-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="section-subtitle">
+                        Conheça os nossos
+                    </p>
+
+                    <h3>
+                        Cavalos
+                    </h3>
+
+                </div>
+
+
+                <a href="cavalo.html" class="see-all">
+                    Ver todos
+                </a>
+
+            </div>
+
+
+            <div class="horses-grid">
+
+
+                <!-- LUNA -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/luna.jpg"
+                            alt="Luna"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Luna</h4>
+
+                        <p>
+                            Quarto de Milha
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 01
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TROVÃO -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/trovao.jpg"
+                            alt="Trovão"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Trovão</h4>
+
+                        <p>
+                            Mangalarga Marchador
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 02
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ESTRELA -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/estrela.jpg"
+                            alt="Estrela"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Estrela</h4>
+
+                        <p>
+                            Crioulo
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 03
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- APOLO -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/apolo.jpg"
+                            alt="Apolo"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Apolo</h4>
+
+                        <p>
+                            Puro Sangue Inglês
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 04
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MAXIMUS -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/maximus.jpg"
+                            alt="Maximus"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Maximus</h4>
+
+                        <p>
+                            Campolina
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 05
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- TURQUESA -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/turquesa.jpg"
+                            alt="Turquesa"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Turquesa</h4>
+
+                        <p>
+                            Lavradeiro
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 06
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- MERIDA -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/merida.jpg"
+                            alt="Merida"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Merida</h4>
+
+                        <p>
+                            Campolina
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 07
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CRISTAL -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/cristal.jpg"
+                            alt="Cristal"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Cristal</h4>
+
+                        <p>
+                            Lavradeiro
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 08
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CORA -->
+
+                <article class="horse-card">
+
+                    <div class="horse-image">
+                        <img
+                            src="images/cora.jpg"
+                            alt="Cora"
+                        >
+                    </div>
+
+                    <div class="horse-info">
+
+                        <h4>Cora</h4>
+
+                        <p>
+                            Quarto de Milha
+                        </p>
+
+                        <div class="horse-details">
+
+                            <span>
+                                Baia 09
+                            </span>
+
+                            <span class="available">
+                                ● Disponível
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PARTE INFERIOR
+        ================================================== -->
+
+        <section class="bottom-section">
+
+
+            <!-- PRÓXIMOS PASSEIOS -->
+
+            <div class="info-panel">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <p class="section-subtitle">
+                            Agenda
+                        </p>
+
+                        <h3>
+                            Próximos passeios
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-message">
+
+                    <span>
+                        🏇
+                    </span>
+
+                    <p>
+                        Confira os próximos passeios agendados.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ESTOQUE -->
+
+            <div class="info-panel">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <p class="section-subtitle">
+                            Atenção
+                        </p>
+
+                        <h3>
+                            Estoque
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="empty-message">
+
+                    <span>
+                        📦
+                    </span>
+
+                    <p>
+                        Produtos com estoque baixo aparecerão aqui.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/script.js"></script>
+<footer class="footer">
+    <p>© 2026 Haras Bela Vista</p>
+    <span>Gestão equestre</span>
+</footer>
+</body>
+
+</html>

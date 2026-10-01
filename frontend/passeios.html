@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Haras Bela Vista - Passeios</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        .passeios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            width: 100%;
+        }
+
+        .passeio-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.06);
+            min-width: 0;
+            transition: 0.2s;
+        }
+
+        .passeio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(61, 48, 38, 0.10);
+        }
+
+        .passeio-topo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #eee8df;
+        }
+
+        .passeio-icon {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            background: #eee4d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .passeio-data {
+            color: #a1825b;
+            font-size: 12px;
+            margin: 0 0 3px 0;
+        }
+
+        .passeio-topo h4 {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .passeio-info {
+            display: grid;
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .passeio-info div {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .passeio-info span,
+        .passeio-footer span {
+            color: #8d8074;
+            font-size: 11px;
+        }
+
+        .passeio-info strong {
+            color: #3d3026;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .passeio-observacao {
+            padding-top: 15px;
+            border-top: 1px solid #eee8df;
+        }
+
+        .passeio-observacao span {
+            display: block;
+            color: #8d8074;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .passeio-observacao p {
+            color: #3d3026;
+            font-size: 12px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .passeio-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 16px;
+            margin-top: 16px;
+            border-top: 1px solid #eee8df;
+        }
+
+        .passeio-footer div {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .passeio-footer strong {
+            font-family: Georgia, serif;
+            font-size: 19px;
+        }
+
+        .status-passeio {
+            color: #64805d !important;
+            font-size: 11px !important;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .empty-message {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: #8d8074;
+        }
+
+        .empty-message span {
+            font-size: 30px;
+        }
+
+        @media (max-width: 1100px) {
+
+            .passeios-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 750px) {
+
+            .passeios-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="layout">
+
+    <!-- MENU -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span>🐎</span>
+
+            <h1>Haras</h1>
+
+            <p>Bela Vista</p>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="/" class="menu-item">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="/cavalos.html" class="menu-item">
+                <span>🐴</span>
+                Cavalos
+            </a>
+
+            <a href="/passeios.html" class="menu-item active">
+                <span>🏇</span>
+                Passeios
+            </a>
+
+            <a href="/clientes.html" class="menu-item">
+                <span>👥</span>
+                Clientes
+            </a>
+
+            <a href="/proprietarios.html" class="menu-item">
+                <span>👤</span>
+                Proprietários
+            </a>
+
+            <a href="/equipamentos.html" class="menu-item">
+                <span>🎒</span>
+                Equipamentos
+            </a>
+
+            <a href="/shop.html" class="menu-item">
+                <span>🏪</span>
+                Shop
+            </a>
+
+            <a href="/relatorios.html" class="menu-item">
+                <span>📊</span>
+                Relatórios
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome">
+                    Gerenciamento
+                </p>
+
+                <h2>
+                    Passeios
+                </h2>
+
+            </div>
+
+
+            <div class="manager">
+
+                <div class="manager-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>
+                        Gerente
+                    </strong>
+
+                    <small>
+                        Administrador
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="horses-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="section-subtitle">
+                        Haras Bela Vista
+                    </p>
+
+                    <h3>
+                        Passeios cadastrados
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="listaPasseios"
+                class="passeios-grid"
+            >
+
+                <p>
+                    Carregando passeios...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+async function carregarPasseios() {
+
+    const lista =
+        document.getElementById('listaPasseios');
+
+    try {
+
+        const resposta =
+            await fetch('/passeios');
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                'Erro ao buscar os passeios'
+            );
+
+        }
+
+
+        const passeios =
+            await resposta.json();
+
+
+        lista.innerHTML = '';
+
+
+        if (passeios.length === 0) {
+
+            lista.innerHTML = `
+
+                <div class="empty-message">
+
+                    <span>🏇</span>
+
+                    <p>
+                        Nenhum passeio cadastrado.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        passeios.forEach(passeio => {
+
+            const data =
+                new Date(passeio.data);
+
+
+            const dataFormatada =
+                data.toLocaleDateString(
+                    'pt-BR',
+                    {
+                        timeZone: 'UTC'
+                    }
+                );
+
+
+            const duracao =
+                Number(passeio.duracao);
+
+
+            const textoDuracao =
+                duracao === 1
+                    ? '1 hora'
+                    : `${duracao} horas`;
+
+
+            const valor =
+                Number(passeio.valor_passeio)
+                    .toFixed(2)
+                    .replace('.', ',');
+
+
+            const observacao =
+                passeio.observacao ||
+                'Nenhuma observação registrada.';
+
+
+            const card =
+                document.createElement('article');
+
+
+            card.className =
+                'passeio-card';
+
+
+            card.innerHTML = `
+
+                <div class="passeio-topo">
+
+                    <div class="passeio-icon">
+                        🏇
+                    </div>
+
+                    <div>
+
+                        <p class="passeio-data">
+                            ${dataFormatada}
+                        </p>
+
+                        <h4>
+                            ${passeio.horario_inicio}
+                        </h4>
+
+                    </div>
+
+                </div>
+
+
+                <div class="passeio-info">
+
+                    <div>
+
+                        <span>
+                            Cliente
+                        </span>
+
+                        <strong>
+                            ${passeio.cliente}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Cavalo
+                        </span>
+
+                        <strong>
+                            🐴 ${passeio.cavalo}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Duração
+                        </span>
+
+                        <strong>
+                            ${textoDuracao}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Forma de pagamento
+                        </span>
+
+                        <strong>
+                            ${passeio.forma_pagamento}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="passeio-observacao">
+
+                        <span>
+                            Observação
+                        </span>
+
+                        <p>
+                            ${observacao}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="passeio-footer">
+
+                    <div>
+
+                        <span>
+                            Valor do passeio
+                        </span>
+
+                        <strong>
+                            R$ ${valor}
+                        </strong>
+
+                    </div>
+
+
+                    <span class="status-passeio">
+                        ● Agendado
+                    </span>
+
+                </div>
+
+            `;
+
+
+            lista.appendChild(card);
+
+        });
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao carregar passeios:',
+            erro
+        );
+
+
+        lista.innerHTML = `
+
+            <div class="empty-message">
+
+                <span>⚠️</span>
+
+                <p>
+                    Não foi possível carregar os passeios.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+carregarPasseios();
+
+</script>
+
+<footer class="footer">
+    <p>© 2026 Haras Bela Vista</p>
+    <span>Gestão equestre</span>
+</footer>
+</body>
+
+</html>

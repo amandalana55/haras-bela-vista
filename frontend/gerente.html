@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Gerente - Haras Bela Vista</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .manager-page {
+            max-width: 900px;
+        }
+
+        .manager-card {
+            background: white;
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.06);
+        }
+
+        .manager-profile {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 35px;
+        }
+
+        .manager-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #eee4d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 4px solid #eee4d3;
+        }
+
+        .manager-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .manager-avatar .avatar-placeholder {
+            font-size: 48px;
+        }
+
+        .manager-profile h3 {
+            margin: 0 0 5px;
+            font-family: Georgia, serif;
+            font-size: 27px;
+        }
+
+        .manager-profile p {
+            margin: 0;
+            color: #8d8074;
+        }
+
+        .manager-data {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .data-item {
+            background: #faf8f5;
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .data-item span {
+            display: block;
+            color: #8d8074;
+            font-size: 12px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .data-item strong {
+            font-size: 16px;
+        }
+
+        .manager-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .manager-actions button {
+            border: none;
+            border-radius: 12px;
+            padding: 13px 22px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-edit {
+            background: #eee4d3;
+        }
+
+        .btn-delete {
+            background: #ead2d2;
+        }
+
+        .edit-form {
+            display: none;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .edit-form.active {
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            color: #8d8074;
+        }
+
+        .form-group input {
+            padding: 13px;
+            border: 1px solid #ddd5cc;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #a18b73;
+        }
+
+        .photo-group {
+            grid-column: 1 / -1;
+        }
+
+        .photo-preview {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .photo-preview img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #eee4d3;
+            display: none;
+        }
+
+        .photo-preview span {
+            color: #8d8074;
+            font-size: 13px;
+        }
+
+        .form-buttons {
+            margin-top: 22px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-buttons button {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-save {
+            background: #6f604f;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #eee;
+        }
+
+        .loading {
+            color: #8d8074;
+        }
+
+        @media (max-width: 700px) {
+
+            .manager-data,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-group {
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="layout">
+
+
+    <!-- MENU -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span>🐎</span>
+
+            <h1>Haras</h1>
+
+            <p>Bela Vista</p>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="index.html" class="menu-item">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="cavalo.html" class="menu-item">
+                <span>🐴</span>
+                Cavalos
+            </a>
+
+            <a href="passeios.html" class="menu-item">
+                <span>🏇</span>
+                Passeios
+            </a>
+
+            <a href="clientes.html" class="menu-item">
+                <span>👥</span>
+                Clientes
+            </a>
+
+            <a href="proprietarios.html" class="menu-item">
+                <span>👤</span>
+                Proprietários
+            </a>
+
+            <a href="equipamentos.html" class="menu-item">
+                <span>🎒</span>
+                Equipamentos
+            </a>
+
+            <a href="shop.html" class="menu-item">
+                <span>🏪</span>
+                Shop
+            </a>
+
+            <a href="relatorios.html" class="menu-item">
+                <span>📊</span>
+                Relatórios
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome">
+                    ADMINISTRAÇÃO
+                </p>
+
+                <h2>
+                    Perfil do gerente
+                </h2>
+
+            </div>
+
+        </header>
+
+
+        <section class="manager-page">
+
+            <div class="manager-card">
+
+                <div id="loading" class="loading">
+                    Carregando dados do gerente...
+                </div>
+
+
+                <div id="manager-content"
+                    style="display:none;">
+
+
+                    <!-- PERFIL -->
+
+                    <div class="manager-profile">
+
+                        <div class="manager-avatar">
+
+                            <span
+                                id="avatar-placeholder"
+                                class="avatar-placeholder">
+                                👤
+                            </span>
+
+                            <img
+                                id="foto-gerente"
+                                alt="Foto do gerente">
+
+                        </div>
+
+
+                        <div>
+
+                            <h3 id="nome-gerente">
+                                -
+                            </h3>
+
+                            <p id="cargo-gerente">
+                                -
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DADOS -->
+
+                    <div class="manager-data">
+
+                        <div class="data-item">
+
+                            <span>
+                                E-mail
+                            </span>
+
+                            <strong id="email-gerente">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="data-item">
+
+                            <span>
+                                Telefone
+                            </span>
+
+                            <strong id="telefone-gerente">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="data-item">
+
+                            <span>
+                                Cidade
+                            </span>
+
+                            <strong id="cidade-gerente">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="data-item">
+
+                            <span>
+                                ID do gerente
+                            </span>
+
+                            <strong id="id-gerente">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOTÕES -->
+
+                    <div class="manager-actions">
+
+                        <button
+                            class="btn-edit"
+                            onclick="abrirEdicao()">
+
+                            ✏️ Editar
+
+                        </button>
+
+
+                        <button
+                            class="btn-delete"
+                            onclick="excluirGerente()">
+
+                            🗑️ Excluir
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- FORMULÁRIO -->
+
+                    <div
+                        id="edit-form"
+                        class="edit-form">
+
+                        <h3>
+                            Editar dados
+                        </h3>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Nome
+                                </label>
+
+                                <input
+                                    id="input-nome"
+                                    type="text">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Cargo
+                                </label>
+
+                                <input
+                                    id="input-cargo"
+                                    type="text">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    E-mail
+                                </label>
+
+                                <input
+                                    id="input-email"
+                                    type="email">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Telefone
+                                </label>
+
+                                <input
+                                    id="input-telefone"
+                                    type="text">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Cidade
+                                </label>
+
+                                <input
+                                    id="input-cidade"
+                                    type="text">
+
+                            </div>
+
+
+                            <!-- FOTO -->
+
+                            <div class="form-group photo-group">
+
+                                <label>
+                                    Foto do gerente
+                                </label>
+
+                                <input
+                                    id="input-foto"
+                                    type="file"
+                                    accept=".jpg,.jpeg,.png,.webp"
+                                    onchange="previewFoto()">
+
+
+                                <div class="photo-preview">
+
+                                    <img
+                                        id="preview-foto"
+                                        alt="Pré-visualização">
+
+                                    <span id="foto-nome">
+                                        Escolha uma foto para o gerente.
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-buttons">
+
+                            <button
+                                class="btn-save"
+                                onclick="salvarGerente()">
+
+                                💾 Salvar
+
+                            </button>
+
+
+                            <button
+                                class="btn-cancel"
+                                onclick="fecharEdicao()">
+
+                                Cancelar
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+let gerenteAtual = null;
+
+
+// =====================================================
+// CARREGAR GERENTE
+// =====================================================
+
+async function carregarGerente() {
+
+    try {
+
+        const resposta =
+            await fetch('/gerente');
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                'Erro ao buscar gerente'
+            );
+
+        }
+
+
+        gerenteAtual =
+            await resposta.json();
+
+
+        document.getElementById(
+            'nome-gerente'
+        ).textContent =
+            gerenteAtual.nome;
+
+
+        document.getElementById(
+            'cargo-gerente'
+        ).textContent =
+            gerenteAtual.cargo;
+
+
+        document.getElementById(
+            'email-gerente'
+        ).textContent =
+            gerenteAtual.email;
+
+
+        document.getElementById(
+            'telefone-gerente'
+        ).textContent =
+            gerenteAtual.telefone || 'Não informado';
+
+
+        document.getElementById(
+            'cidade-gerente'
+        ).textContent =
+            gerenteAtual.cidade;
+
+
+        document.getElementById(
+            'id-gerente'
+        ).textContent =
+            gerenteAtual.id_gerente;
+
+
+        // FOTO
+
+        const foto =
+            document.getElementById(
+                'foto-gerente'
+            );
+
+        const placeholder =
+            document.getElementById(
+                'avatar-placeholder'
+            );
+
+
+        if (gerenteAtual.foto) {
+
+            foto.src =
+                `/images/${gerenteAtual.foto}`;
+
+            foto.style.display =
+                'block';
+
+            placeholder.style.display =
+                'none';
+
+        } else {
+
+            foto.style.display =
+                'none';
+
+            placeholder.style.display =
+                'block';
+
+        }
+
+
+        document.getElementById(
+            'loading'
+        ).style.display =
+            'none';
+
+
+        document.getElementById(
+            'manager-content'
+        ).style.display =
+            'block';
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao carregar gerente:',
+            erro
+        );
+
+
+        document.getElementById(
+            'loading'
+        ).textContent =
+            'Não foi possível carregar os dados do gerente.';
+
+    }
+
+}
+
+
+// =====================================================
+// ABRIR EDIÇÃO
+// =====================================================
+
+function abrirEdicao() {
+
+    document.getElementById(
+        'input-nome'
+    ).value =
+        gerenteAtual.nome;
+
+
+    document.getElementById(
+        'input-cargo'
+    ).value =
+        gerenteAtual.cargo;
+
+
+    document.getElementById(
+        'input-email'
+    ).value =
+        gerenteAtual.email;
+
+
+    document.getElementById(
+        'input-telefone'
+    ).value =
+        gerenteAtual.telefone || '';
+
+
+    document.getElementById(
+        'input-cidade'
+    ).value =
+        gerenteAtual.cidade;
+
+
+    document.getElementById(
+        'input-foto'
+    ).value = '';
+
+
+    document.getElementById(
+        'edit-form'
+    ).classList.add('active');
+
+}
+
+
+// =====================================================
+// PRÉ-VISUALIZAR FOTO
+// =====================================================
+
+function previewFoto() {
+
+    const input =
+        document.getElementById(
+            'input-foto'
+        );
+
+    const preview =
+        document.getElementById(
+            'preview-foto'
+        );
+
+    const nome =
+        document.getElementById(
+            'foto-nome'
+        );
+
+
+    if (!input.files || !input.files[0]) {
+
+        preview.style.display =
+            'none';
+
+        nome.textContent =
+            'Escolha uma foto para o gerente.';
+
+        return;
+
+    }
+
+
+    const arquivo =
+        input.files[0];
+
+
+    nome.textContent =
+        arquivo.name;
+
+
+    const leitor =
+        new FileReader();
+
+
+    leitor.onload = function (evento) {
+
+        preview.src =
+            evento.target.result;
+
+        preview.style.display =
+            'block';
+
+    };
+
+
+    leitor.readAsDataURL(arquivo);
+
+}
+
+
+// =====================================================
+// FECHAR EDIÇÃO
+// =====================================================
+
+function fecharEdicao() {
+
+    document.getElementById(
+        'edit-form'
+    ).classList.remove('active');
+
+}
+
+
+// =====================================================
+// SALVAR
+// =====================================================
+
+async function salvarGerente() {
+
+    try {
+
+        const formulario =
+            new FormData();
+
+
+        formulario.append(
+            'nome',
+            document.getElementById(
+                'input-nome'
+            ).value
+        );
+
+
+        formulario.append(
+            'cargo',
+            document.getElementById(
+                'input-cargo'
+            ).value
+        );
+
+
+        formulario.append(
+            'email',
+            document.getElementById(
+                'input-email'
+            ).value
+        );
+
+
+        formulario.append(
+            'telefone',
+            document.getElementById(
+                'input-telefone'
+            ).value
+        );
+
+
+        formulario.append(
+            'cidade',
+            document.getElementById(
+                'input-cidade'
+            ).value
+        );
+
+
+        const arquivo =
+            document.getElementById(
+                'input-foto'
+            ).files[0];
+
+
+        if (arquivo) {
+
+            formulario.append(
+                'foto',
+                arquivo
+            );
+
+        }
+
+
+        const resposta =
+            await fetch(
+                `/gerente/${gerenteAtual.id_gerente}`,
+                {
+
+                    method: 'PUT',
+
+                    body: formulario
+
+                }
+            );
+
+
+        const resultado =
+            await resposta.json();
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                resultado.erro ||
+                'Erro ao atualizar gerente'
+            );
+
+        }
+
+
+        alert(
+            'Dados do gerente atualizados com sucesso!'
+        );
+
+
+        fecharEdicao();
+
+
+        carregarGerente();
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao salvar gerente:',
+            erro
+        );
+
+
+        alert(
+            erro.message
+        );
+
+    }
+
+}
+
+
+// =====================================================
+// EXCLUIR
+// =====================================================
+
+async function excluirGerente() {
+
+    const confirmar =
+        confirm(
+            'Tem certeza que deseja excluir o gerente?'
+        );
+
+
+    if (!confirmar) {
+        return;
+    }
+
+
+    try {
+
+        const resposta =
+            await fetch(
+                `/gerente/${gerenteAtual.id_gerente}`,
+                {
+                    method: 'DELETE'
+                }
+            );
+
+
+        const resultado =
+            await resposta.json();
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                resultado.erro ||
+                'Erro ao excluir gerente'
+            );
+
+        }
+
+
+        alert(
+            'Gerente excluído com sucesso!'
+        );
+
+
+        window.location.href =
+            'index.html';
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao excluir gerente:',
+            erro
+        );
+
+
+        alert(
+            erro.message
+        );
+
+    }
+
+}
+
+
+// =====================================================
+
+carregarGerente();
+
+</script>
+<footer class="footer">
+    <p>© 2026 Haras Bela Vista</p>
+    <span>Gestão equestre</span>
+</footer>
+</body>
+
+</html>

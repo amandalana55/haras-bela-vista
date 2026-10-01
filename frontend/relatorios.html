@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Relatórios - Haras Bela Vista</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .report-card {
+            background: white;
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.05);
+        }
+
+        .report-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: #eee4d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 15px;
+        }
+
+        .report-card p {
+            color: #8d8074;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .report-card strong {
+            font-family: Georgia, serif;
+            font-size: 27px;
+        }
+
+        .financial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 30px;
+        }
+
+        .financial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.05);
+        }
+
+        .financial-card p {
+            color: #8d8074;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .financial-card strong {
+            font-family: Georgia, serif;
+            font-size: 28px;
+        }
+
+        .attention-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.05);
+        }
+
+        .attention-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-height: 80px;
+        }
+
+        .attention-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: #eee4d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .attention-content p {
+            color: #8d8074;
+            font-size: 13px;
+        }
+
+        .attention-content strong {
+            display: block;
+            font-family: Georgia, serif;
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .loading {
+            color: #8d8074;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1050px) {
+
+            .reports-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 750px) {
+
+            .reports-grid,
+            .financial-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- MENU LATERAL -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <span>🐎</span>
+
+                <h1>Haras</h1>
+
+                <p>Bela Vista</p>
+
+            </div>
+
+            <nav class="menu">
+
+                <a href="index.html" class="menu-item">
+
+                    <span>⌂</span>
+
+                    Início
+
+                </a>
+
+                <a href="cavalo.html" class="menu-item">
+
+                    <span>🐴</span>
+
+                    Cavalos
+
+                </a>
+
+                <a href="passeios.html" class="menu-item">
+
+                    <span>🏇</span>
+
+                    Passeios
+
+                </a>
+
+                <a href="clientes.html" class="menu-item">
+
+                    <span>👥</span>
+
+                    Clientes
+
+                </a>
+
+                <a href="proprietarios.html" class="menu-item">
+
+                    <span>👤</span>
+
+                    Proprietários
+
+                </a>
+
+                <a href="equipamentos.html" class="menu-item">
+
+                    <span>🎒</span>
+
+                    Equipamentos
+
+                </a>
+
+                <a href="shop.html" class="menu-item">
+
+                    <span>🏪</span>
+
+                    Shop
+
+                </a>
+
+                <a href="relatorios.html" class="menu-item active">
+
+                    <span>📊</span>
+
+                    Relatórios
+
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <!-- CONTEÚDO -->
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+
+                    <p class="welcome">
+                        VISÃO GERAL
+                    </p>
+
+                    <h2>
+                        Relatórios
+                    </h2>
+
+                </div>
+
+                <div class="manager">
+
+                    <div class="manager-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Gerente
+                        </strong>
+
+                        <small>
+                            Administrador
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- CARDS PRINCIPAIS -->
+
+            <section>
+
+                <div class="section-header">
+
+                    <div>
+
+                        <p class="section-subtitle">
+                            RESUMO
+                        </p>
+
+                        <h3>
+                            Visão do Haras
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="reports-container"
+                    class="reports-grid"
+                >
+
+                    <p class="loading">
+                        Carregando relatórios...
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- FINANCEIRO -->
+
+            <section>
+
+                <div class="section-header">
+
+                    <div>
+
+                        <p class="section-subtitle">
+                            FINANCEIRO
+                        </p>
+
+                        <h3>
+                            Movimentação financeira
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div class="financial-grid">
+
+                    <div class="financial-card">
+
+                        <p>
+                            Valor dos passeios
+                        </p>
+
+                        <strong id="valor-passeios">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+                    <div class="financial-card">
+
+                        <p>
+                            Valor das compras
+                        </p>
+
+                        <strong id="valor-compras">
+                            R$ 0,00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ATENÇÃO -->
+
+            <section>
+
+                <div class="attention-panel">
+
+                    <div class="section-header">
+
+                        <div>
+
+                            <p class="section-subtitle">
+                                ATENÇÃO
+                            </p>
+
+                            <h3>
+                                Estoque
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="attention-content">
+
+                        <div class="attention-icon">
+                            📦
+                        </div>
+
+                        <div>
+
+                            <strong id="estoque-baixo">
+                                0
+                            </strong>
+
+                            <p>
+                                produtos estão com estoque baixo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script>
+
+        async function carregarRelatorios() {
+
+            try {
+
+                const resposta =
+                    await fetch(
+                        'http://localhost:3001/relatorios'
+                    );
+
+                if (!resposta.ok) {
+
+                    throw new Error(
+                        'Erro HTTP: ' + resposta.status
+                    );
+
+                }
+
+                const dados =
+                    await resposta.json();
+
+
+                // ==============================
+                // CARDS
+                // ==============================
+
+                const container =
+                    document.getElementById(
+                        'reports-container'
+                    );
+
+                container.innerHTML = `
+
+                    <div class="report-card">
+
+                        <div class="report-icon">
+                            🐴
+                        </div>
+
+                        <p>
+                            Cavalos
+                        </p>
+
+                        <strong>
+                            ${dados.total_cavalos}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <div class="report-icon">
+                            🏇
+                        </div>
+
+                        <p>
+                            Passeios
+                        </p>
+
+                        <strong>
+                            ${dados.total_passeios}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <div class="report-icon">
+                            👥
+                        </div>
+
+                        <p>
+                            Clientes
+                        </p>
+
+                        <strong>
+                            ${dados.total_clientes}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <div class="report-icon">
+                            👤
+                        </div>
+
+                        <p>
+                            Proprietários
+                        </p>
+
+                        <strong>
+                            ${dados.total_proprietarios}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="report-card">
+
+                        <div class="report-icon">
+                            🏪
+                        </div>
+
+                        <p>
+                            Produtos
+                        </p>
+
+                        <strong>
+                            ${dados.total_produtos}
+                        </strong>
+
+                    </div>
+
+                `;
+
+
+                // ==============================
+                // VALORES
+                // ==============================
+
+                const valorPasseios =
+                    Number(
+                        dados.total_passeios_valor
+                    );
+
+
+                const valorCompras =
+                    Number(
+                        dados.total_compras_valor
+                    );
+
+
+                document.getElementById(
+                    'valor-passeios'
+                ).textContent =
+                    'R$ ' +
+                    valorPasseios
+                        .toFixed(2)
+                        .replace('.', ',');
+
+
+                document.getElementById(
+                    'valor-compras'
+                ).textContent =
+                    'R$ ' +
+                    valorCompras
+                        .toFixed(2)
+                        .replace('.', ',');
+
+
+                // ==============================
+                // ESTOQUE
+                // ==============================
+
+                document.getElementById(
+                    'estoque-baixo'
+                ).textContent =
+                    dados.produtos_estoque_baixo;
+
+
+            } catch (erro) {
+
+                console.error(
+                    'Erro ao carregar relatórios:',
+                    erro
+                );
+
+
+                document.getElementById(
+                    'reports-container'
+                ).innerHTML = `
+
+                    <p class="loading">
+                        Não foi possível carregar os relatórios.
+                    </p>
+
+                `;
+
+            }
+
+        }
+
+
+        carregarRelatorios();
+
+    </script>
+<footer class="footer">
+    <p>© 2026 Haras Bela Vista</p>
+    <span>Gestão equestre</span>
+</footer>
+</body>
+
+</html>

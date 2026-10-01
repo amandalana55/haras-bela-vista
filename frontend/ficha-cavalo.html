@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ficha do Cavalo | Haras Bela Vista</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .horse-detail-section {
+            margin-top: 10px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #8d6f4d;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            color: #5f4933;
+        }
+
+        .horse-detail-card {
+            background: white;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.06);
+
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 35px;
+        }
+
+        .horse-detail-image {
+            width: 100%;
+            height: 390px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #eee4d3;
+        }
+
+        .horse-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .horse-detail-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .horse-detail-subtitle {
+            color: #a1825b;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .horse-detail-info h3 {
+            font-family: Georgia, serif;
+            font-size: 34px;
+            font-weight: 500;
+            margin: 0 0 25px 0;
+            color: #3d3026;
+        }
+
+        .horse-status {
+            display: inline-block;
+            width: fit-content;
+
+            padding: 7px 13px;
+            border-radius: 20px;
+
+            background: #e8efe5;
+            color: #64805d;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            margin-bottom: 25px;
+        }
+
+        .horse-status.unavailable {
+            background: #f3e4e0;
+            color: #9b6258;
+        }
+
+        .horse-data {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .horse-data-item {
+            border-top: 1px solid #eee8df;
+            padding-top: 13px;
+        }
+
+        .horse-data-item span {
+            display: block;
+            color: #8d8074;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .horse-data-item strong {
+            color: #3d3026;
+            font-size: 14px;
+        }
+
+        .horse-loading {
+            color: #8d8074;
+            font-size: 14px;
+        }
+
+        .horse-error {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            color: #9b6258;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.05);
+        }
+
+        @media (max-width: 900px) {
+
+            .horse-detail-card {
+                grid-template-columns: 1fr;
+            }
+
+            .horse-detail-image {
+                height: 320px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .horse-data {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="layout">
+
+
+    <!-- =========================
+         MENU LATERAL
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span>🐎</span>
+
+            <h1>Haras</h1>
+
+            <p>Bela Vista</p>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="index.html" class="menu-item">
+
+                <span>⌂</span>
+
+                Início
+
+            </a>
+
+
+            <a href="cavalo.html" class="menu-item active">
+
+                <span>🐴</span>
+
+                Cavalos
+
+            </a>
+
+
+            <a href="passeios.html" class="menu-item">
+
+                <span>🏇</span>
+
+                Passeios
+
+            </a>
+
+
+            <a href="clientes.html" class="menu-item">
+
+                <span>👥</span>
+
+                Clientes
+
+            </a>
+
+
+            <a href="proprietarios.html" class="menu-item">
+
+                <span>👤</span>
+
+                Proprietários
+
+            </a>
+
+
+            <a href="equipamentos.html" class="menu-item">
+
+                <span>🎒</span>
+
+                Equipamentos
+
+            </a>
+
+
+            <a href="shop.html" class="menu-item">
+
+                <span>🏪</span>
+
+                Shop
+
+            </a>
+
+
+            <a href="relatorios.html" class="menu-item">
+
+                <span>📊</span>
+
+                Relatórios
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome">
+                    GERENCIAMENTO
+                </p>
+
+                <h2>
+                    Ficha do cavalo
+                </h2>
+
+            </div>
+
+
+            <div class="manager">
+
+                <div class="manager-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>
+                        Gerente
+                    </strong>
+
+                    <small>
+                        Administrador
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <section class="horse-detail-section">
+
+
+            <a
+                href="cavalo.html"
+                class="back-button"
+            >
+                ← Voltar para cavalos
+            </a>
+
+
+            <div id="horse-container">
+
+                <p class="horse-loading">
+                    Carregando informações do cavalo...
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+async function carregarCavalo() {
+
+    const container =
+        document.getElementById('horse-container');
+
+
+    // Pega o ID que veio na URL
+    // Exemplo: ficha-cavalo.html?id=4
+
+    const parametros =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const id =
+        parametros.get('id');
+
+
+    // Se não tiver ID
+
+    if (!id) {
+
+        container.innerHTML = `
+
+            <div class="horse-error">
+
+                Não foi informado qual cavalo deve ser exibido.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    try {
+
+        // IMPORTANTE:
+        // Seu server.js usa /cavalo/:id
+
+        const resposta =
+            await fetch(
+                `/cavalo/${id}`
+            );
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                'Erro HTTP: ' + resposta.status
+            );
+
+        }
+
+
+        const cavalo =
+            await resposta.json();
+
+
+        console.log(
+            'Cavalo recebido:',
+            cavalo
+        );
+
+
+        // =========================
+        // IMAGEM
+        // =========================
+
+        const nomeImagem =
+            cavalo.nome
+                .normalize('NFD')
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ''
+                )
+                .toLowerCase();
+
+
+        // =========================
+        // DISPONIBILIDADE
+        // =========================
+
+        const disponivel =
+            cavalo.disponibilidade === true ||
+            cavalo.disponibilidade === 'true';
+
+
+        const disponibilidade =
+            disponivel
+                ? 'Disponível'
+                : 'Indisponível';
+
+
+        const classeStatus =
+            disponivel
+                ? ''
+                : 'unavailable';
+
+
+        // =========================
+        // NASCIMENTO
+        // =========================
+
+        let nascimento =
+            'Não informado';
+
+
+        if (cavalo.data_nascimento) {
+
+            nascimento =
+                new Date(
+                    cavalo.data_nascimento
+                ).toLocaleDateString(
+                    'pt-BR',
+                    {
+                        timeZone: 'UTC'
+                    }
+                );
+
+        }
+
+
+        // =========================
+        // FICHA
+        // =========================
+
+        container.innerHTML = `
+
+            <div class="horse-detail-card">
+
+
+                <!-- IMAGEM -->
+
+                <div class="horse-detail-image">
+
+                    <img
+                        src="images/${nomeImagem}.jpg"
+                        alt="${cavalo.nome}"
+                        onerror="
+                            this.src='images/produto.jpg';
+                        "
+                    >
+
+                </div>
+
+
+
+                <!-- INFORMAÇÕES -->
+
+                <div class="horse-detail-info">
+
+
+                    <p class="horse-detail-subtitle">
+                        FICHA DO CAVALO
+                    </p>
+
+
+                    <h3>
+                        ${cavalo.nome}
+                    </h3>
+
+
+                    <span
+                        class="horse-status ${classeStatus}"
+                    >
+
+                        ● ${disponibilidade}
+
+                    </span>
+
+
+
+                    <div class="horse-data">
+
+
+                        <div class="horse-data-item">
+
+                            <span>
+                                Raça
+                            </span>
+
+                            <strong>
+                                ${cavalo.raca || 'Não informado'}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="horse-data-item">
+
+                            <span>
+                                Sexo
+                            </span>
+
+                            <strong>
+                                ${cavalo.sexo || 'Não informado'}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="horse-data-item">
+
+                            <span>
+                                Data de nascimento
+                            </span>
+
+                            <strong>
+                                ${nascimento}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="horse-data-item">
+
+                            <span>
+                                Pelagem
+                            </span>
+
+                            <strong>
+                                ${cavalo.pelagem || 'Não informado'}
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="horse-data-item">
+
+                            <span>
+                                Baia
+                            </span>
+
+                            <strong>
+                                Baia ${
+                                    cavalo.baia != null
+                                    ? String(cavalo.baia).padStart(2, '0')
+                                    : 'Não informado'
+                                }
+                            </strong>
+
+                        </div>
+
+
+
+                        <div class="horse-data-item">
+
+                            <span>
+                                Placa da baia
+                            </span>
+
+                            <strong>
+                                ${cavalo.placa_baia || 'Não informado'}
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        `;
+
+
+    } catch (erro) {
+
+        console.error(
+            'Erro ao carregar cavalo:',
+            erro
+        );
+
+
+        container.innerHTML = `
+
+            <div class="horse-error">
+
+                Não foi possível carregar as informações do cavalo.
+
+                <br><br>
+
+                <small>
+                    Verifique se o ID do cavalo existe e se o servidor está funcionando.
+                </small>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+// Inicia a página
+
+carregarCavalo();
+
+</script>
+
+<footer class="footer">
+    <p>© 2026 Haras Bela Vista</p>
+    <span>Gestão equestre</span>
+</footer>
+</body>
+
+</html>

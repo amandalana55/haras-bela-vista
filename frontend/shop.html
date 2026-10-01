@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shop - Haras Bela Vista</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .shop-section {
+            margin-bottom: 40px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.06);
+            transition: 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(61, 48, 38, 0.10);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 210px;
+            background: #eee4d3;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-content {
+            padding: 22px;
+        }
+
+        .product-card h4 {
+            font-family: Georgia, serif;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 0 5px 0;
+            color: #3d3026;
+        }
+
+        .product-category {
+            color: #a1825b;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 10px 0;
+        }
+
+        .product-description {
+            color: #8d8074;
+            font-size: 13px;
+            min-height: 38px;
+            margin: 0 0 18px 0;
+        }
+
+        .product-bottom {
+            border-top: 1px solid #eee8df;
+            padding-top: 15px;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .product-price span {
+            display: block;
+            color: #8d8074;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .product-price strong {
+            font-family: Georgia, serif;
+            font-size: 19px;
+            color: #3d3026;
+        }
+
+        .stock {
+            text-align: right;
+            font-size: 12px;
+            color: #64805d;
+        }
+
+        .stock.low {
+            color: #9a7546;
+        }
+
+        .stock strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .purchases-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 5px 18px rgba(61, 48, 38, 0.05);
+        }
+
+        .purchase-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .purchase-item {
+            display: grid;
+            grid-template-columns: 55px 1fr auto auto;
+            align-items: center;
+            gap: 16px;
+            padding: 17px 0;
+            border-bottom: 1px solid #eee8df;
+        }
+
+        .purchase-item:last-child {
+            border-bottom: none;
+        }
+
+        .purchase-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: #eee4d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .purchase-date strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .purchase-date span {
+            color: #8d8074;
+            font-size: 12px;
+        }
+
+        .purchase-payment {
+            color: #76695d;
+            font-size: 12px;
+        }
+
+        .purchase-value {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            white-space: nowrap;
+        }
+
+        .loading {
+            color: #8d8074;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1050px) {
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 750px) {
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .purchase-item {
+                grid-template-columns: 48px 1fr;
+            }
+
+            .purchase-payment,
+            .purchase-value {
+                grid-column: 2;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- MENU -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <span>🐎</span>
+
+            <h1>Haras</h1>
+
+            <p>Bela Vista</p>
+
+        </div>
+
+        <nav class="menu">
+
+            <a href="index.html" class="menu-item">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="cavalos.html" class="menu-item">
+                <span>🐴</span>
+                Cavalos
+            </a>
+
+            <a href="passeios.html" class="menu-item">
+                <span>🏇</span>
+                Passeios
+            </a>
+
+            <a href="clientes.html" class="menu-item">
+                <span>👥</span>
+                Clientes
+            </a>
+
+            <a href="proprietarios.html" class="menu-item">
+                <span>👤</span>
+                Proprietários
+            </a>
+
+            <a href="equipamentos.html" class="menu-item">
+                <span>🎒</span>
+                Equipamentos
+            </a>
+
+            <a href="shop.html" class="menu-item active">
+                <span>🏪</span>
+                Shop
+            </a>
+
+            <a href="relatorios.html" class="menu-item">
+                <span>📊</span>
+                Relatórios
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="welcome">
+                    LOJA DO HARAS
+                </p>
+
+                <h2>
+                    Shop
+                </h2>
+
+            </div>
+
+            <div class="manager">
+
+                <div class="manager-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <strong>
+                        Gerente
+                    </strong>
+
+                    <small>
+                        Administrador
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PRODUTOS -->
+
+        <section class="shop-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="section-subtitle">
+                        ESTOQUE
+                    </p>
+
+                    <h3>
+                        Produtos disponíveis
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="products-container"
+                class="products-grid"
+            >
+
+                <p class="loading">
+                    Carregando produtos...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMPRAS -->
+
+        <section class="shop-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="section-subtitle">
+                        MOVIMENTAÇÃO
+                    </p>
+
+                    <h3>
+                        Compras recentes
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="purchases-panel">
+
+                <div
+                    id="purchases-container"
+                    class="purchase-list"
+                >
+
+                    <p class="loading">
+                        Carregando compras...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DESCOBRIR IMAGEM DO PRODUTO
+===================================================== */
+
+function descobrirImagem(nome) {
+
+    const nomeNormalizado = String(nome)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+
+
+    /* SELA */
+
+    if (nomeNormalizado.includes("sela")) {
+        return "images/sela-de-couro.jpg";
+    }
+
+
+    /* ARREIO */
+
+    if (nomeNormalizado.includes("arreio")) {
+        return "images/arreio.jpg";
+    }
+
+
+    /* BRIDAO */
+
+    if (
+        nomeNormalizado.includes("bridao") ||
+        nomeNormalizado.includes("bridão")
+    ) {
+        return "images/bridao.jpg";
+    }
+
+
+    /* MANTA */
+
+    if (nomeNormalizado.includes("manta")) {
+        return "images/manta.jpg";
+    }
+
+
+    /* LUVA */
+
+    if (nomeNormalizado.includes("luva")) {
+        return "images/luva.jpg";
+    }
+
+
+    /* CAPACETE */
+
+    if (nomeNormalizado.includes("capacete")) {
+        return "images/capacete.jpg";
+    }
+
+
+    /* IMAGEM PADRÃO */
+
+    return "images/produto.jpg";
+}
+
+
+
+/* =====================================================
+   CARREGAR PRODUTOS
+===================================================== */
+
+async function carregarProdutos() {
+
+    const container =
+        document.getElementById(
+            "products-container"
+        );
+
+
+    try {
+
+        const resposta =
+            await fetch(
+                "http://localhost:3001/produtos"
+            );
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                "Erro ao buscar produtos"
+            );
+
+        }
+
+
+        const produtos =
+            await resposta.json();
+
+
+        container.innerHTML = "";
+
+
+        produtos.forEach(produto => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "product-card";
+
+
+            const imagem =
+                descobrirImagem(
+                    produto.nome
+                );
+
+
+            const estoqueBaixo =
+                Number(
+                    produto.quantidade_estoque
+                ) <=
+                Number(
+                    produto.estoque_minimo
+                );
+
+
+            card.innerHTML = `
+
+                <div class="product-image">
+
+                    <img
+                        src="${imagem}"
+                        alt="${produto.nome}"
+                    >
+
+                </div>
+
+
+                <div class="product-content">
+
+
+                    <p class="product-category">
+
+                        ${produto.categoria}
+
+                    </p>
+
+
+                    <h4>
+
+                        ${produto.nome}
+
+                    </h4>
+
+
+                    <p class="product-description">
+
+                        ${produto.descricao}
+
+                    </p>
+
+
+                    <div class="product-bottom">
+
+
+                        <div class="product-price">
+
+                            <span>
+                                Preço
+                            </span>
+
+
+                            <strong>
+
+                                R$
+                                ${Number(
+                                    produto.preco_venda
+                                )
+                                .toFixed(2)
+                                .replace(".", ",")}
+
+                            </strong>
+
+                        </div>
+
+
+                        <div
+                            class="stock ${
+                                estoqueBaixo
+                                    ? "low"
+                                    : ""
+                            }"
+                        >
+
+                            <strong>
+
+                                ${
+                                    produto.quantidade_estoque
+                                }
+                                unidades
+
+                            </strong>
+
+
+                            ${
+                                estoqueBaixo
+                                    ? "⚠ Estoque baixo"
+                                    : "● Em estoque"
+                            }
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        });
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar produtos:",
+            erro
+        );
+
+
+        container.innerHTML = `
+
+            <p class="loading">
+
+                Não foi possível carregar os produtos.
+
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   CARREGAR COMPRAS
+===================================================== */
+
+async function carregarCompras() {
+
+    const container =
+        document.getElementById(
+            "purchases-container"
+        );
+
+
+    try {
+
+        const resposta =
+            await fetch(
+                "http://localhost:3001/compras"
+            );
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                "Erro ao buscar compras"
+            );
+
+        }
+
+
+        const compras =
+            await resposta.json();
+
+
+        container.innerHTML = "";
+
+
+        if (compras.length === 0) {
+
+            container.innerHTML = `
+
+                <p class="loading">
+
+                    Nenhuma compra registrada.
+
+                </p>
+
+            `;
+
+            return;
+
+        }
+
+
+        compras.forEach(compra => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "purchase-item";
+
+
+            const data =
+                new Date(
+                    compra.data
+                );
+
+
+            const dataFormatada =
+                data.toLocaleDateString(
+                    "pt-BR",
+                    {
+                        timeZone: "UTC"
+                    }
+                );
+
+
+            const valor =
+                Number(
+                    compra.valor_total
+                )
+                .toFixed(2)
+                .replace(".", ",");
+
+
+            item.innerHTML = `
+
+                <div class="purchase-icon">
+                    🛒
+                </div>
+
+
+                <div class="purchase-date">
+
+                    <strong>
+
+                        Compra #${compra.id_compra}
+
+                    </strong>
+
+
+                    <span>
+
+                        ${dataFormatada}
+                        •
+                        ${compra.hora}
+
+                    </span>
+
+                </div>
+
+
+                <div class="purchase-payment">
+
+                    ${compra.forma_pagamento}
+
+                </div>
+
+
+                <div class="purchase-value">
+
+                    R$ ${valor}
+
+                </div>
+
+            `;
+
+
+            container.appendChild(item);
+
+        });
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar compras:",
+            erro
+        );
+
+
+        container.innerHTML = `
+
+            <p class="loading">
+
+                Não foi possível carregar as compras.
+
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+carregarProdutos();
+
+carregarCompras();
+
+</script>
+
+<footer class="footer">
+    <p>© 2026 Haras Bela Vista</p>
+    <span>Gestão equestre</span>
+</footer>
+</body>
+
+</html>
